@@ -3,11 +3,21 @@
 
 #define swap(type, x, y) do{ type t = x; x = y; y = t;} while(0)
 
+void ary_print(int a[], int n)
+{
+    for(int i = 0; i < n; i++)
+        printf("x[%d] = %d\n", i, a[i]);
+    puts("\n");
+}
+
 void ary_reverse(int a[], int n)
 {
     int i;
-    for(i = 0; i < n / 2; i++)
+    for(i = 0; i < n / 2; i++) {
+        printf("swap %d and %d.\n", a[i], a[n-i-1]);
         swap(int, a[i], a[n - i - 1]);
+        ary_print(a, n);
+    }
 }
 
 int main(void)
@@ -24,10 +34,9 @@ int main(void)
         printf("x[%d] : ", i);
         scanf("%d", &x[i]);
     }
-    ary_reverse(x, nx);
     printf("Now the array is fliped.\n");
-    for(i = 0; i < nx; i++)
-        printf("x[%d] = %d\n", i, x[i]);
+    ary_reverse(x, nx);
+    puts("Now the flip end");
     free(x);
 
     return 0;

@@ -1,7 +1,7 @@
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-/*---Get a max number in n integer array a---*/
 int maxof(const int a[], int n)
 {
     int i;
@@ -15,14 +15,12 @@ int main(void)
 {
     int i;
     int *height;
-    int number;
-    printf("number of people : ");
-    scanf("%d", &number);
+    srand(time(NULL));
+    int number = 5 + rand() % 15;
     height = calloc(number, sizeof(int));
-    printf("Enter the %d person's height.\n", number);
-    for(i = 0; i< number; i++) {
-        printf("height[%d] : ", i);
-        scanf("%d", &height[i]);
+    for(i = 0; i < number; i++){
+        height[i] = 100 + rand() % 90;
+        printf("height[%d] = %d\n", i, height[i]);
     }
     printf("maximum height is %d.\n", maxof(height, number));
     free(height);
