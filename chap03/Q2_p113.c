@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// linear search(sentinel method) for elements matching keys 
+// in array a with n number of elements.
+int search(int a[], int n, int key)
+{
+    int i;
+    printf("   |");
+    for(i = 0; i < n; i++) {
+        printf("%d  ", i);
+    }
+    printf("\n---+");
+    for(i = 0; i < n; i++) 
+        printf("---");
+    a[n] = key;
+    for(i = 0; i< n; i++) {
+        printf("\n   |");
+        for(int j = 0; j < i; j++)
+            printf("   ");
+        printf("*\n");
+        printf("  %d|", i);
+        for(int j = 0; j < n; j++)
+            printf("%2d ", a[j]);
+        if (a[i] == key)
+            break;
+        printf("\n   |");
+    }
+    return i == n ? -1 : i;
+}
+
+int main(void)
+{
+    int i, nx, ky, idx;
+    int *x;
+    puts("linear search");
+    printf("number of elements: ");
+    scanf("%d", &nx);
+    x = calloc(nx + 1, sizeof(int));
+    for(i = 0; i < nx; i++) {
+        printf("x[%d] : ", i);
+        scanf("%d", &x[i]);
+    }
+    printf("searching value: ");
+    scanf("%d", &ky);
+    idx = search(x, nx, ky);
+    if(idx == -1)
+        puts("failed to search");
+    else   
+        printf("\n%d is in x[%d].\n", ky, idx);
+    free(x);
+
+    return 0;
+}
