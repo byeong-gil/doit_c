@@ -12,16 +12,21 @@ int int_cmp(const int *a, const int *b)
         return 0;
 }
 
-void *seqsearch(const void *key, const void *base, size_t nmemb, size_t size, 
+void *binsearch(const void *key, const void *base, size_t nmemb, size_t size, 
     int(*compar)(const void *, const void *))
 {
-    int n = nmemb;
-    int i;
-    for(i = 0; i < n; i++) {
-        if (((int *)base)[i] == *(int *)key) {
-            return &((int *)base)[i];
-        }
-    }
+    int pl = 0;
+    int pr = nmemb-1;
+    int pc;
+    do {
+        pc = (pl + pr) / 2;
+        if (((int *)base)[pc] == *(int *)key)
+            return &((int *)base)[pc];
+        else if (pc < *(int *)key)
+            pl = pc + 1;
+        else
+            pr = pc - 1;
+    } while(pl <= pr);
     return NULL;
 }
 
@@ -48,7 +53,7 @@ int main(void)
     scanf("%d", &ky);
 
     //using bsearch
-    p = seqsearch(&ky,
+    p = binsearch(&ky,
                 x,
                 nx,
                 sizeof(int),

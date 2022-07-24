@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-long long_cmpr(const long *a, const long *b)
+int long_cmpr(const long *a, const long *b)
 {
     if (*a < *b)
         return 1;
@@ -30,9 +30,9 @@ int main(void)
             printf("x[%d]: ", i);
             scanf("%ld", &x[i]);
         } while(x[i] > x[i - 1]);
-        printf("searching value: ");
-        scanf("%ld", &ky);
     }
+    printf("searching value: ");
+    scanf("%ld", &ky);
 
     p = bsearch(&ky,
                 x,
