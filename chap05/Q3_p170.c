@@ -19,7 +19,7 @@ bool do_recursive(const int a[], int n, int min) {
             b = true;
         }
     }
-    return a;
+    return b;
 }
 
 void subtract_all(int a[], int n, int min) {
@@ -33,7 +33,6 @@ int gcd_array(int a[], int n)
 {
     int min = min_array(a, n);
     if (!do_recursive(a, n, min)) {
-        printf("hihihih");
         return min; 
     } else {
         subtract_all(a, n, min);
@@ -60,6 +59,8 @@ int main(void)
         scanf("%d", &a[4]);
         printf("gcd is %d.\n", gcd_array(a, 5));
     }
+
+    free(a);
     
     return 0;
 }
